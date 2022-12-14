@@ -30,8 +30,9 @@ class MainActivity : AppCompatActivity() {
                 binding.progressBar.visibility= View.VISIBLE
                 val result = quotesApi.getMovieByKey(binding.searchText.text.toString(), 1)
                 adapter.differ.submitList(result.body()?.films)
-                Log.d("TAG ", result.body().toString())
+                //Log.d("TAG ", result.body().toString())
                 binding.progressBar.visibility= View.GONE
+
             }
         }
 
