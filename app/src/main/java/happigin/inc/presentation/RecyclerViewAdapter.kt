@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import happigin.inc.databinding.NewsCardBinding
+import happigin.inc.domain.models.kinopoisk.searhByKey.Film
 import happigin.inc.domain.models.news.Articles
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
@@ -13,9 +14,9 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
     class ViewHolder(private val binding: NewsCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setData(item:Articles, id: Int){
+        fun setData(item: Film, id:Int){
             binding.apply {
-               textView.text = item.title
+               textView.text = item.nameRu
             }
         }
     }
@@ -38,13 +39,13 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     }
 
 
-    private val differCallback = object : DiffUtil.ItemCallback<Articles>() {
+    private val differCallback = object : DiffUtil.ItemCallback<Film>() {
 
-        override fun areItemsTheSame(oldItem: Articles, newItem: Articles): Boolean {
-            return oldItem.url == newItem.url
+        override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
+            return oldItem.filmId == newItem.filmId
         }
 
-        override fun areContentsTheSame(oldItem: Articles, newItem: Articles): Boolean {
+        override fun areContentsTheSame(oldItem: Film, newItem: Film): Boolean {
             return oldItem == newItem
         }
     }

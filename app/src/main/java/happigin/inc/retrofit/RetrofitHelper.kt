@@ -19,6 +19,7 @@ object RetrofitHelper {
     private const val randomUserUrl = "https://randomuser.me/"
     private const val randomNumberUrl = "https://numbersapi.p.rapidapi.com/"
     private const val newsUrl = "https://newsapi.org/"
+    private const val movieUrl = "https://kinopoiskapiunofficial.tech/"
 
     fun getInstance(): Retrofit {
         val mHttpLoggingInterceptor = HttpLoggingInterceptor()
@@ -31,7 +32,7 @@ object RetrofitHelper {
 
 
         return Retrofit.Builder()
-            .baseUrl(newsUrl)
+            .baseUrl(movieUrl)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(mOkHttpClient)
             .build()

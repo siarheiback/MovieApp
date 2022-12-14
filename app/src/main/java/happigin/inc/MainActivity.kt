@@ -28,9 +28,9 @@ class MainActivity : AppCompatActivity() {
             // launching a new coroutine
             GlobalScope.launch(Dispatchers.Main) {
                 binding.progressBar.visibility= View.VISIBLE
-                val result = quotesApi.getNews(binding.searchText.text.toString())
-                adapter.differ.submitList(result.body()?.articles)
-                Log.d("TAG ", result.body()?.totalResults.toString())
+                val result = quotesApi.getMovieByKey(binding.searchText.text.toString(), 1)
+                adapter.differ.submitList(result.body()?.films)
+                Log.d("TAG ", result.body().toString())
                 binding.progressBar.visibility= View.GONE
             }
         }
