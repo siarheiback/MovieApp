@@ -1,34 +1,41 @@
-package happigin.inc
+package happigin.inc.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import happigin.inc.app.appComponent
 import happigin.inc.databinding.ActivityMainBinding
-import happigin.inc.presentation.RecyclerViewAdapter
 import happigin.inc.retrofit.ApiService
 import happigin.inc.retrofit.RetrofitHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.security.Provider
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var adapter: RecyclerViewAdapter = RecyclerViewAdapter()
+    @Inject
+    lateinit var retrofit: ApiService
     override fun onCreate(savedInstanceState: Bundle?) {
+        appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val quotesApi = RetrofitHelper.getInstance().create(ApiService::class.java)
+
+        //val quotesApi = RetrofitHelper.getInstance().create(ApiService::class.java)
         val recyclerView = binding.recycler
         recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recycler.adapter = adapter
+
         binding.button.setOnClickListener(){
             // launching a new coroutine
             GlobalScope.launch(Dispatchers.Main) {
                 binding.progressBar.visibility= View.VISIBLE
-                val result = quotesApi.getMovieByKey(binding.searchText.text.toString(), 1)
+                val result = retrofit.getMovieByKey(binding.searchText.text.toString(), 1)
                 adapter.differ.submitList(result.body()?.films)
                 Log.d("TAG ", result.body().toString())
                 binding.progressBar.visibility= View.GONE
