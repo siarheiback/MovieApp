@@ -6,6 +6,7 @@ import happigin.inc.domain.models.joke.Joke
 import happigin.inc.domain.models.kinopoisk.KinopoiskResult
 import happigin.inc.domain.models.kinopoisk.searhByKey.Search
 import happigin.inc.domain.models.kinopoisk.trailer.Trailer
+import happigin.inc.domain.models.kinopoisk.Releases
 import happigin.inc.domain.models.news.News
 import happigin.inc.domain.models.numberFacts.RandomNumber
 import happigin.inc.domain.models.randomactivity.RandomActivityResult
@@ -86,4 +87,16 @@ interface ApiService {
         @Query("keyword") request:String,
         @Query("page") page:Int
     ): Response<Search>
+
+    //get releases
+    @Headers(
+        "Accept: application/json",
+        "x-api-key:d31e14a0-297c-414e-9a32-be7d2e5075b3"
+    )
+    @GET("/api/v2.1/films/releases")
+    suspend fun getReleases(
+        @Query("year") year:Int,
+        @Query("month") month:String,
+        @Query("page") page:Int
+    ): Response<Releases>
 }
