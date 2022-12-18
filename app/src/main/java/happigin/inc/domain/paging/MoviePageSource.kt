@@ -1,10 +1,9 @@
-package happigin.inc.paging
+package happigin.inc.domain.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import happigin.inc.domain.models.kinopoisk.searhByKey.Film
-import happigin.inc.domain.models.kinopoisk.searhByKey.Search
-import happigin.inc.retrofit.ApiService
+import happigin.inc.domain.retrofit.ApiService
 import retrofit2.HttpException
 
 class MoviePageSource(

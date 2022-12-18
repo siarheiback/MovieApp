@@ -12,10 +12,9 @@ import happigin.inc.domain.models.kinopoisk.searhByKey.Film
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
-
     class ViewHolder(private val binding: NewsCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun setData(item: Film, id:Int){
+        fun setData(item: Film){
             binding.apply {
                textView.text = item.nameRu
                imageView.load(item.posterUrlPreview){
@@ -35,7 +34,7 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentItem = differ.currentList[position]
-        holder.setData(currentItem, position)
+        holder.setData(currentItem)
     }
 
 

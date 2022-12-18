@@ -1,4 +1,4 @@
-package happigin.inc.domain.models.kinopoisk
+package happigin.inc.domain.models.kinopoisk.releases
 
 data class KinopoiskResult(
     val completed: Boolean,
