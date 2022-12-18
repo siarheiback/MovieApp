@@ -2,6 +2,8 @@ package happigin.inc.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingData
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,9 +12,9 @@ import happigin.inc.R
 import happigin.inc.databinding.NewsCardBinding
 import happigin.inc.domain.models.kinopoisk.searhByKey.Film
 
-class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+class RecyclerViewAdapter : PagingDataAdapter<Film, RecyclerViewAdapter.FilmViewHolder>(differCallback){
 
-    class ViewHolder(private val binding: NewsCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class FilmViewHolder(private val binding: NewsCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun setData(item: Film){
             binding.apply {
@@ -26,25 +28,26 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FilmViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = NewsCardBinding.inflate(inflater, parent, false)
-        return ViewHolder(binding)
+        return FilmViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currentItem = differ.currentList[position]
-        holder.setData(currentItem)
+    override fun onBindViewHolder(holder: FilmViewHolder, position: Int) {
+        val currentItem = getItem(position)
+        if (currentItem !=null){ holder.setData(currentItem)}
     }
 
 
 
-    override fun getItemCount(): Int {
+
+    /*override fun getItemCount(): Int {
         return differ.currentList.size
     }
+*/
 
-
-    private val differCallback = object : DiffUtil.ItemCallback<Film>() {
+    private object differCallback  : DiffUtil.ItemCallback<Film>() {
 
         override fun areItemsTheSame(oldItem: Film, newItem: Film): Boolean {
             return oldItem.filmId == newItem.filmId
@@ -54,7 +57,8 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
             return oldItem == newItem
         }
     }
-    val differ= AsyncListDiffer(this,differCallback )
+    //val differ= AsyncListDiffer(this,differCallback )
+
 
 
 }
