@@ -1,4 +1,4 @@
-package happigin.inc.presentation
+package happigin.inc.presentation.screens.main
 
 import androidx.lifecycle.ViewModel
 

@@ -2,12 +2,12 @@ package happigin.inc.domain.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import happigin.inc.domain.models.kinopoisk.searhByKey.Film
-import happigin.inc.domain.retrofit.ApiService
+import happigin.inc.data.network.models.kinopoisk.searhByKey.Film
+import happigin.inc.data.network.ApiService
 import retrofit2.HttpException
 
 class MoviePageSource(
-    private val api:ApiService,
+    private val api: ApiService,
     private val query:String
 ): PagingSource<Int, Film>() {
 

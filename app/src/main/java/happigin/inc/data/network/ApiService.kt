@@ -1,9 +1,9 @@
-package happigin.inc.domain.retrofit
+package happigin.inc.data.network
 
-import happigin.inc.domain.models.kinopoisk.releases.KinopoiskResult
-import happigin.inc.domain.models.kinopoisk.releases.Releases
-import happigin.inc.domain.models.kinopoisk.searhByKey.Search
-import happigin.inc.domain.models.kinopoisk.trailer.Trailer
+import happigin.inc.data.network.models.kinopoisk.releases.KinopoiskResult
+import happigin.inc.data.network.models.kinopoisk.releases.Releases
+import happigin.inc.data.network.models.kinopoisk.searhByKey.Search
+import happigin.inc.data.network.models.kinopoisk.trailer.Trailer
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Headers

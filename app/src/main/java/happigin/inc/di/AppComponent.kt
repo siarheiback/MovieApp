@@ -4,7 +4,7 @@ import android.app.Application
 import dagger.BindsInstance
 import dagger.Component
 import happigin.inc.di.retrofit.RetrofitModule
-import happigin.inc.presentation.MainActivity
+import happigin.inc.presentation.screens.main.MainActivity
 import javax.inject.Singleton
 
 

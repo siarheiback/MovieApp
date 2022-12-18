@@ -1,4 +1,4 @@
-package happigin.inc.app
+package happigin.inc
 
 import android.app.Application
 import android.content.Context

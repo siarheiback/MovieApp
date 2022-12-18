@@ -1,13 +1,14 @@
-package happigin.inc.presentation
+package happigin.inc.presentation.screens.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import happigin.inc.app.appComponent
+import happigin.inc.appComponent
 import happigin.inc.databinding.ActivityMainBinding
-import happigin.inc.domain.retrofit.ApiService
+import happigin.inc.data.network.ApiService
+import happigin.inc.presentation.adapters.RecyclerViewAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

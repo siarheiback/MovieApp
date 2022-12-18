@@ -1,4 +1,4 @@
-package happigin.inc.domain.models
+package happigin.inc.data.network.models
 
 data class QuoteList(
     val count: Int,

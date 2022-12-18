@@ -1,4 +1,4 @@
-package happigin.inc.presentation
+package happigin.inc.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import happigin.inc.R
 import happigin.inc.databinding.NewsCardBinding
-import happigin.inc.domain.models.kinopoisk.searhByKey.Film
+import happigin.inc.data.network.models.kinopoisk.searhByKey.Film
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
