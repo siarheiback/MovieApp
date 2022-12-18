@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.request.ImageRequest
 import happigin.inc.R
 import happigin.inc.databinding.NewsCardBinding
 import happigin.inc.domain.models.kinopoisk.searhByKey.Film
-import happigin.inc.domain.models.news.Articles
 
 class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
 
@@ -24,8 +22,6 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
                    crossfade(true)
                    placeholder(R.drawable.ic_baseline_change_circle_24)
                }
-
-
                 description.text = item.description
             }
         }
