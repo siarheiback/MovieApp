@@ -22,9 +22,11 @@ import javax.inject.Singleton
 class RetrofitModule {
 
     companion object {
-        private const val address = "https://kinopoiskapiunofficial.tech/"
-        private const val key = "d31e14a0-297c-414e-9a32-be7d2e5075b3"
-        private const val accept = "application/json"
+        private const val ADDRESS = "https://kinopoiskapiunofficial.tech/"
+        private const val KEY_NAME = "x-api-key"
+        private const val KEY_VALUE = "d31e14a0-297c-414e-9a32-be7d2e5075b3"
+        private const val ACCEPT_VALUE = "application/json"
+        private const val ACCEPT_NAME = "Accept"
     }
 
     @Provides
@@ -45,8 +47,8 @@ class RetrofitModule {
     fun provideHeader(): Interceptor {
         return Interceptor { chain ->
             val builder = chain.request().newBuilder()
-            builder.header("Accept", accept)
-            builder.header("x-api-key", key)
+            builder.header(ACCEPT_NAME, ACCEPT_VALUE)
+            builder.header(KEY_NAME, KEY_VALUE)
             return@Interceptor chain.proceed(builder.build())
         }
     }
@@ -68,7 +70,7 @@ class RetrofitModule {
     @Provides
     fun provideApiService(mOkHttpClient: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl(address)
+            .baseUrl(ADDRESS)
             .client(mOkHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

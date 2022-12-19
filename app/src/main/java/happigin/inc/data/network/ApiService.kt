@@ -25,18 +25,18 @@ interface ApiService {
      * @return movie info on success [KinopoiskResult]
      * @param[id] movie id
      */
-    @GET("api/v2.2/films/{id}")
+    @GET(GET_FILMS_BY_ID)
     suspend fun getMovieById(
-       @Path("id") id:Long
+       @Path(PATH_ID) id:Long
     ) : Response<KinopoiskResult>
 
     /**
      * @return [Trailer] on Success
      * @param[id] movie id
      */
-    @GET("api/v2.2/films/{id}/videos")
+    @GET(GET_TRAILER_BY_ID)
     suspend fun getTrailerById(
-        @Path("id") id:Long
+        @Path(PATH_ID) id:Long
     ): Response<Trailer>
 
 
@@ -45,10 +45,10 @@ interface ApiService {
      * @param[request] contains key words for search, for example movie name "Matrix"
      * @param[page] page number
      */
-    @GET("api/v2.1/films/search-by-keyword")
+    @GET(GET_FILMS_BY_KEYWORD)
     suspend fun getMovieByKey(
-        @Query("keyword") request:String,
-        @Query("page") page:Int
+        @Query(QUERY_KEYWORD) request:String,
+        @Query(QUERY_PAGE) page:Int
     ): Response<Search>
 
 
@@ -58,10 +58,24 @@ interface ApiService {
      * @param[month] contains release month for search, for example movie name " JANUARY"
      * @param[page] page number
      */
-    @GET("/api/v2.1/films/releases")
+    @GET(GET_RELEASES_FILMS)
     suspend fun getReleases(
-        @Query("year") year:Int,
-        @Query("month") month:String,
-        @Query("page") page:Int
+        @Query(QUERY_YEAR) year:Int,
+        @Query(QUERY_MONTH) month:String,
+        @Query(QUERY_PAGE) page:Int
     ): Response<Releases>
+
+    companion object {
+        private const val QUERY_YEAR = "year"
+        private const val QUERY_MONTH = "month"
+        private const val QUERY_PAGE = "page"
+        private const val QUERY_KEYWORD = "keyword"
+
+        private const val PATH_ID = "id"
+
+        private const val GET_FILMS_BY_ID = "api/v2.2/films/{id}"
+        private const val GET_TRAILER_BY_ID = "api/v2.2/films/{id}/videos"
+        private const val GET_FILMS_BY_KEYWORD = "api/v2.1/films/search-by-keyword"
+        private const val GET_RELEASES_FILMS = "/api/v2.1/films/releases"
+    }
 }
