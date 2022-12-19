@@ -1,16 +1,11 @@
 package happigin.inc.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.lifecycle.*
+import androidx.paging.*
 import happigin.inc.domain.models.kinopoisk.searhByKey.Film
 import happigin.inc.domain.paging.MoviePageSource
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -18,16 +13,35 @@ class MainViewModel @Inject constructor(
     private val pagingSourceFactory: MoviePageSource.Factory
 ) : ViewModel() {
 
+    private val _query = MutableStateFlow("")
+    val query: StateFlow<String> = _query.asStateFlow()
 
-    val movie: StateFlow<PagingData<Film>> = Pager(
-        PagingConfig(
-            pageSize = 20,
-            initialLoadSize = 20
-        ),
-    ) {
-        pagingSourceFactory.create(query = "test")
-    }.flow.stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
+    /* val movie: Flow<PagingData<Film>> = Pager(
+         PagingConfig(
+             pageSize = 20,
+             initialLoadSize = 20,
+         ),
+     ) {
+         pagingSourceFactory.create(query.value)
+     }.flow.cachedIn(viewModelScope)
+ */
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val movie: Flow<PagingData<Film>> = query
+        .map(::newPager)
+        .flatMapLatest { pager -> pager.flow }
+        .cachedIn(viewModelScope)
+
+
+    private fun newPager(query: String): Pager<Int, Film> {
+        return Pager(PagingConfig(20, initialLoadSize = 20, maxSize = 200)) {
+            pagingSourceFactory.create(query)
+        }
+    }
+
+    fun setQuery(query: String) {
+        _query.tryEmit(query)
+    }
 
     @Suppress("UNCHECKED_CAST")
     class Factory @Inject constructor(

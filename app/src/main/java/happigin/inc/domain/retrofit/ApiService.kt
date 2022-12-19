@@ -6,7 +6,6 @@ import happigin.inc.domain.models.kinopoisk.searhByKey.Search
 import happigin.inc.domain.models.kinopoisk.trailer.Trailer
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -65,4 +64,7 @@ interface ApiService {
         @Query("month") month:String,
         @Query("page") page:Int
     ): Response<Releases>
+
+
+
 }
