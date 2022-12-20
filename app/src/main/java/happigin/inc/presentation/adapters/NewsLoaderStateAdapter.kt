@@ -1,4 +1,4 @@
-package happigin.inc.presentation
+package happigin.inc.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import happigin.inc.databinding.ItemErrorBinding
 import happigin.inc.databinding.ItemProgressBinding
 
+/**
+ * This adapter add footer and header with progress bar or error message
+ */
 class NewsLoaderStateAdapter() : LoadStateAdapter<NewsLoaderStateAdapter.ItemViewHolder>() {
 
     override fun getStateViewType(loadState: LoadState) = when (loadState) {
@@ -22,7 +25,7 @@ class NewsLoaderStateAdapter() : LoadStateAdapter<NewsLoaderStateAdapter.ItemVie
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): ItemViewHolder {
-        return when(loadState) {
+        return when (loadState) {
             LoadState.Loading -> ProgressViewHolder(LayoutInflater.from(parent.context), parent)
             is LoadState.Error -> ErrorViewHolder(LayoutInflater.from(parent.context), parent)
             is LoadState.NotLoading -> error("Not supported")
@@ -72,9 +75,11 @@ class NewsLoaderStateAdapter() : LoadStateAdapter<NewsLoaderStateAdapter.ItemVie
 
         override fun bind(loadState: LoadState) {
             require(loadState is LoadState.Error)
-            //TODO("некорректное отображение ошибок")
-            //binding.errorMessage.text = loadState.error.message
-            binding.errorMessage.text = "Результатов больше нет"
+            //TODO(некорректное отображение ошибок, насколько я понял апи возвращает
+            // максимум 400 результатов, на одну страницу 20 фильмов, все что идет
+            // после 20 странциы выдает ошибку в адаптаре)
+            binding.errorMessage.text = loadState.error.message
+
         }
 
         companion object {

@@ -2,7 +2,8 @@ package happigin.inc.presentation.screens.main
 
 import androidx.lifecycle.*
 import androidx.paging.*
-import happigin.inc.domain.models.kinopoisk.searhByKey.Film
+import happigin.inc.data.network.models.kinopoisk.searhByKey.Film
+
 import happigin.inc.domain.paging.MoviePageSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
@@ -16,23 +17,13 @@ class MainViewModel @Inject constructor(
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query.asStateFlow()
 
-    /* val movie: Flow<PagingData<Film>> = Pager(
-         PagingConfig(
-             pageSize = 20,
-             initialLoadSize = 20,
-         ),
-     ) {
-         pagingSourceFactory.create(query.value)
-     }.flow.cachedIn(viewModelScope)
- */
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val movie: Flow<PagingData<Film>> = query
         .map(::newPager)
         .flatMapLatest { pager -> pager.flow }
         .cachedIn(viewModelScope)
-
-
+    
     private fun newPager(query: String): Pager<Int, Film> {
         return Pager(PagingConfig(20, initialLoadSize = 20, maxSize = 200)) {
             pagingSourceFactory.create(query)

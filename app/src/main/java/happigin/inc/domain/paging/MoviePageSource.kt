@@ -8,17 +8,9 @@ import happigin.inc.data.network.ApiService
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-
-
 import retrofit2.HttpException
 import java.io.IOException
 
-
-
-abstract class MoviePageSource(
-    private val api: ApiService,
-    private val query:String
-): PagingSource<Int, Film>() {
 
 class MoviePageSource @AssistedInject constructor(
     private val api: ApiService,
@@ -56,5 +48,4 @@ class MoviePageSource @AssistedInject constructor(
     interface Factory {
         fun create(@Assisted("keyword") query: String): MoviePageSource
     }
-}
 }
