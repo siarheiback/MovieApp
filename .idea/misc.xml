@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/User/AndroidStudioProjects/ApiTest/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ApiTest/app/src/main/res/layout/item_error.xml" value="0.4221411192214112" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/ApiTest/app/src/main/res/layout/item_progress.xml" value="0.3625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/ApiTest/app/src/main/res/layout/news_card.xml" value="0.27049180327868855" />
       </map>
     </option>

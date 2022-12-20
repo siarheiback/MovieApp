@@ -24,6 +24,7 @@ class RetrofitModule {
     companion object {
         private const val address = "https://kinopoiskapiunofficial.tech/"
         private const val key = "d31e14a0-297c-414e-9a32-be7d2e5075b3"
+        private const val key2 = "1e5e7a2b-1cb1-4caa-a472-5e7e1002d2ec"
         private const val accept = "application/json"
     }
 
@@ -46,7 +47,7 @@ class RetrofitModule {
         return Interceptor { chain ->
             val builder = chain.request().newBuilder()
             builder.header("Accept", accept)
-            builder.header("x-api-key", key)
+            builder.header("x-api-key", key2)
             return@Interceptor chain.proceed(builder.build())
         }
     }
