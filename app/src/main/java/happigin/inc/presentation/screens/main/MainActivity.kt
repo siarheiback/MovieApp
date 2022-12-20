@@ -50,22 +50,14 @@ class MainActivity : AppCompatActivity() {
         binding.button.setOnClickListener() {
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    try {
                         viewModel.setQuery(binding.searchText.text.toString())
                         viewModel.movie.collectLatest {
                             adapter.submitData(it)
                             binding.recycler.layoutManager?.scrollToPosition(0)
                         }
-                    } catch (e: HttpException) {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
-                    } catch (e: IOException) {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(this@MainActivity, e.message, Toast.LENGTH_SHORT).show()
-                    }
                 }
             }
-            TODO("нет корректной обработки ошибок")
+                //TODO("нет корректной обработки ошибок")
         }
     }
 }

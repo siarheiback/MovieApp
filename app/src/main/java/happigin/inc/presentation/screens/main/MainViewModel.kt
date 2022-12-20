@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
         .map(::newPager)
         .flatMapLatest { pager -> pager.flow }
         .cachedIn(viewModelScope)
-    
+
     private fun newPager(query: String): Pager<Int, Film> {
         return Pager(PagingConfig(20, initialLoadSize = 20, maxSize = 200)) {
             pagingSourceFactory.create(query)
