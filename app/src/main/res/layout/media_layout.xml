@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <TextView
+        android:id="@+id/Media"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/default_quarter_margin"
+        android:text="@string/Media"
+        android:textColor="@color/white"
+        android:textSize="@dimen/capital_font"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/todayInCinema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_double_margin"
+        android:text="@string/todayInCinema"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_font"
+        app:layout_constraintStart_toStartOf="@id/Media"
+        app:layout_constraintTop_toBottomOf="@id/Media" />
+
+    <TextView
+        android:id="@+id/all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:text="@string/all"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/small_font"
+        app:layout_constraintBottom_toBottomOf="@id/todayInCinema"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="@dimen/zero"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:backgroundTint="#25FFFFFF"
+        android:padding="@dimen/default_half_padding"
+        android:text="@string/cinemas"
+        android:textColor="@color/white"
+        android:textSize="@dimen/small_font"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/all"
+        app:layout_constraintStart_toStartOf="@id/Media"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/digitalReleases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_margin"
+        android:text="@string/digitalReleases"
+        android:textColor="@color/white"
+        android:textSize="@dimen/main_font"
+        app:layout_constraintStart_toStartOf="@id/Media"
+        app:layout_constraintTop_toBottomOf="@id/myButton" />
+
+    <TextView
+        android:id="@+id/all1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/small_font"
+        app:layout_constraintBottom_toBottomOf="@id/digitalReleases"
+        app:layout_constraintEnd_toEndOf="@id/all" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_marginStart="@dimen/default_half_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_half_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todayInCinema" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_marginStart="@dimen/default_half_margin"
+        android:layout_marginTop="@dimen/default_margin"
+        android:layout_marginEnd="@dimen/default_half_margin"
+        android:layout_marginBottom="@dimen/default_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/digitalReleases" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
