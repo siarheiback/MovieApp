@@ -6,7 +6,6 @@ import happigin.inc.data.network.models.kinopoisk.searhByKey.Search
 import happigin.inc.data.network.models.kinopoisk.trailer.Trailer
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -19,6 +18,7 @@ import retrofit2.http.Query
  * 403 not found
  * 429 too many requests
  */
+
 interface ApiService {
 
     /**
@@ -64,4 +64,7 @@ interface ApiService {
         @Query("month") month:String,
         @Query("page") page:Int
     ): Response<Releases>
+
+
+
 }

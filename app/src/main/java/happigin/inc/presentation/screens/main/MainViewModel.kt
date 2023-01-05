@@ -1,13 +1,46 @@
 package happigin.inc.presentation.screens.main
 
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.paging.*
+import happigin.inc.data.network.models.kinopoisk.searhByKey.Film
 
-class MainViewModel:ViewModel() {
+import happigin.inc.domain.paging.MoviePageSource
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.*
+import javax.inject.Inject
+import javax.inject.Provider
 
-  /*  val source : MoviePageSource()
-    val movie: StateFlow<PagingData<Film>> = Pager<Int,Film>(
-        PagingConfig(pageSize = 10)
-    ){
+class MainViewModel @Inject constructor(
+    private val pagingSourceFactory: MoviePageSource.Factory
+) : ViewModel() {
 
-    }*/
+    private val _query = MutableStateFlow("")
+    val query: StateFlow<String> = _query.asStateFlow()
+
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val movie: Flow<PagingData<Film>> = query
+        .map(::newPager)
+        .flatMapLatest { pager -> pager.flow }
+        .cachedIn(viewModelScope)
+
+    private fun newPager(query: String): Pager<Int, Film> {
+        return Pager(PagingConfig(20, initialLoadSize = 20, maxSize = 200)) {
+            pagingSourceFactory.create(query)
+        }
+    }
+
+    fun setQuery(query: String) {
+        _query.tryEmit(query)
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    class Factory @Inject constructor(
+        private val viewModerProvider: Provider<MainViewModel>
+    ) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            require(modelClass == MainViewModel::class.java)
+            return viewModerProvider.get() as T
+        }
+    }
 }
