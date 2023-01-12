@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">ApiTest</string>
     <string name="hi_niggers">Hi Niggers</string>
+    <string name="Media">Медиа</string>
+    <string name="todayInCinema">Сегодня в кино</string>
+    <string name="all">Все</string>
+    <string name="cinemas">Кинотеатры</string>
+    <string name="digitalReleases">Цифровые релизы</string>
+    <string name="film_name">Название фильма бывают длинными и запутанными</string>
+    <string name="genre">Жанр фильма</string>
+    <string name="rating">7.0</string>
+    
 </resources>

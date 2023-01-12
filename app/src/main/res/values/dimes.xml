@@ -12,5 +12,11 @@
     <dimen name="default_double_padding">@dimen/default_double_margin</dimen>
     <dimen name="default_divider_height">0.5dp</dimen>
     <dimen name="zero">0dp</dimen>
+    <dimen name="capital_font">30sp</dimen>
+    <dimen name="main_font">20sp</dimen>
+    <dimen name="small_font">16sp</dimen>
+    <dimen name="font_for_items">11sp</dimen>
+
+
 
 </resources>
