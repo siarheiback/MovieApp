@@ -15,6 +15,8 @@
     <dimen name="capital_font">30sp</dimen>
     <dimen name="main_font">20sp</dimen>
     <dimen name="small_font">16sp</dimen>
+    <dimen name="font_for_items">11sp</dimen>
+
 
 
 </resources>
